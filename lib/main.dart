@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 //import './tabs/home.dart' as _firstTab;
 import './tabs/profile.dart' as _firstTab;
-
+import './tabs/classes.dart' as _myClasses;
 import './tabs/dashboard.dart' as _secondTab;
 import './tabs/settings.dart' as _thirdTab;
 import './screens/about.dart' as _aboutPage;
@@ -119,7 +119,7 @@ class TabsState extends State<Tabs> {
         onPageChanged: onTabChanged,
         children: <Widget>[
           new _firstTab.Profile(),
-          new _secondTab.Dashboard(),
+          new _myClasses.Classes(),
           new _thirdTab.Settings()
         ],
       ),

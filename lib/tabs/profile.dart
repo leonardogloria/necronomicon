@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 class Profile extends StatelessWidget {
-  final String name = "Rick Sanchez";
+  final String _fullName = "Rick Sanchez";
   Widget _buildCoverImage(Size screeSize){
     return Container(
       height: screeSize.height / 3.8,
@@ -37,34 +37,45 @@ class Profile extends StatelessWidget {
       fontWeight: FontWeight.w700,
     );
     return Text(
-      "Rick Sanchez",
+      _fullName,
       style: _nameTextStyle ,
     );
   }
 
 
-  @override
-  Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          _buildCoverImage(screenSize),
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: screenSize.height / 6.4,),
-                  _buildProfileImage(),
-                  _buildFullName()
-                ],
-              ) ,
+    @override
+    Widget build(BuildContext context) {
+      Size screenSize = MediaQuery.of(context).size;
+
+      return Scaffold(
+        body: Stack(
+          children: <Widget>[
+            _buildCoverImage(screenSize),
+            SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: screenSize.height / 6.4,),
+                    _buildProfileImage(),
+                    _buildFullName(),
+
+                    //_buildCardThumbnail(),
+
+                  ],
+                ) ,
+              ),
             ),
-          )
-        ],
-      ),
-    );
+
+          ],
+        ),
+
+      );
+    }
+
   }
 
-}
+
+
+
+
