@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-//import './tabs/home.dart' as _firstTab;
 import './tabs/profile.dart' as _firstTab;
 import './tabs/classes.dart' as _myClasses;
-import './tabs/dashboard.dart' as _secondTab;
-import './tabs/settings.dart' as _thirdTab;
+import './tabs/check.dart' as _thirdTab;
 import './screens/about.dart' as _aboutPage;
 import './screens/support.dart' as _supportPage;
 
@@ -120,7 +118,7 @@ class TabsState extends State<Tabs> {
         children: <Widget>[
           new _firstTab.Profile(),
           new _myClasses.Classes(),
-          new _thirdTab.Settings()
+          new _thirdTab.Check()
         ],
       ),
 
