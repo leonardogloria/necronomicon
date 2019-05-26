@@ -81,7 +81,7 @@ class TabsState extends State<Tabs> {
 
   PageController _tabController;
 
-  var _title_app = null;
+  var _title_app = "";
   int _tab = 0;
 
   @override

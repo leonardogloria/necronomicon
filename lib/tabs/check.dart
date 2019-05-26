@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:local_auth/local_auth.dart';
 import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:local_auth/error_codes.dart' as auth_error;
+
 
 
 
@@ -11,23 +12,45 @@ class Check extends StatefulWidget{
 }
 
 class _Check extends State<Check> {
-  final LocalAuthentication auth = LocalAuthentication();
+final LocalAuthentication _localAuth = LocalAuthentication();
   String _authorized = "Not Authorized";
+  bool canCheckBiometric = false;
+  List<BiometricType> _availableBiometrics = List<BiometricType>();
+
+  Future<void> _canCheckBiometrics() async{
+    bool _canCheck = false;
+    try{
+      _canCheck = await _localAuth.canCheckBiometrics;
+
+    }on PlatformException catch(e){
+      print(e);
+    }
+    if(!mounted) return;
+    setState(() {
+        canCheckBiometric = true;
+    });
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
     return new Scaffold(
       body: Center(
         child: Column(
           children: <Widget>[
             new RaisedButton(
               onPressed: () {
-
                 //_ackAlert(context);
                 _checkBiometrics();
               },
               child: const Text("Ack Dialog"),
             ),
-            new Text("Auth: $_authorized")
+            new Text("Auth: $_authorized"),
+          new Text("Can we check biometric ${canCheckBiometric}")
+
+
           ],
         ),
       ),
@@ -35,21 +58,30 @@ class _Check extends State<Check> {
 
   }
   Future<void> _checkBiometrics() async {
-    bool authed = false;
     try {
-      authed = await auth.authenticateWithBiometrics(
-          localizedReason: 'Scan your fingerprint to authenticate',
-          useErrorDialogs: true,
-          stickyAuth: false);
-    } on PlatformException catch (e) {
-      print(e);
+      var authenticate = await _localAuth.authenticateWithBiometrics(
+          localizedReason: 'Please, put your fingerprint to continue');
+      setState(() {
+        if (authenticate) {
+          _authorized = "Autorized";
+        } else {
+
+        }
+      });
+    }on PlatformException catch (e) {
+      if (e.code == auth_error.notAvailable) {
+        print('Nao funcionou');
+      }
     }
-  }
 
 
 }
 
-Future<void> _ackAlert(BuildContext context) {
+
+
+
+
+  Future<void> _ackAlert(BuildContext context) {
 
   return  showDialog<void>(
     context: context,
@@ -74,4 +106,4 @@ Future<void> _ackAlert(BuildContext context) {
       );
     },
   );
-}
+}}
