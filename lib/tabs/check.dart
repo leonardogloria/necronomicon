@@ -32,29 +32,32 @@ final LocalAuthentication _localAuth = LocalAuthentication();
 
 
   }
+   _startFind(){
+    print("uhull");
+  }
+  Widget _makeFindingBox(){
+    return new Card(
+
+      child: new Text("Get your device close to nfc tag"),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
 
     return new Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            new RaisedButton(
-              onPressed: () {
-                //_ackAlert(context);
-                _checkBiometrics();
-              },
-              child: const Text("Ack Dialog"),
-            ),
-            new Text("Auth: $_authorized"),
-          new Text("Can we check biometric ${canCheckBiometric}")
 
+      body: new Stack(
+        children: <Widget>[
 
-          ],
-        ),
-      ),
+         _makeFindingBox()
+        ],
+      )
     );
+
+
+    
 
   }
   Future<void> _checkBiometrics() async {
