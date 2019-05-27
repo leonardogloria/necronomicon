@@ -45,6 +45,7 @@ flutter:
     - assets/images/rick.png
     - assets/images/wallpaper.png
     - assets/images/cardThumb.png
+    - assets/images/ok.png
   fonts:
     - family: Poppins
       fonts:
@@ -84,3 +85,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
