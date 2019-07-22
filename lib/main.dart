@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:necronomicon/screens/login.dart';
 import './tabs/profile.dart' as _firstTab;
 import './tabs/classes.dart' as _myClasses;
 import './tabs/check.dart' as _thirdTab;
@@ -8,13 +9,18 @@ import './screens/support.dart' as _supportPage;
 
 void main() => runApp(new MaterialApp(
   title: 'Flutter Starter',
+  routes: {
+    "/home": (context) => Tabs(),
+    "/login": (context) => LoginPage(),
+  },
   theme: new ThemeData(
       primarySwatch: Colors.blueGrey,
       scaffoldBackgroundColor: Colors.white,
       primaryColor: Colors.blueGrey, backgroundColor: Colors.white
   ),
-  home: new Tabs(),
+  home: new Tabs(),//new LoginPage(), //new Tabs(),
   onGenerateRoute: (RouteSettings settings) {
+
     switch (settings.name) {
       case '/about': return new FromRightToLeft(
         builder: (_) => new _aboutPage.About(),
@@ -186,7 +192,8 @@ class TabsState extends State<Tabs> {
                   leading: new Icon(Icons.exit_to_app),
                   title: new Text('Sign Out'),
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/login");
+                    //Navigator.pop(context);
                   }
               ),
             ],

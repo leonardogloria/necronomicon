@@ -45,6 +45,7 @@ flutter:
     - assets/images/rick.png
     - assets/images/wallpaper.png
     - assets/images/cardThumb.png
+    - assets/images/logo.png
   fonts:
     - family: Poppins
       fonts:
